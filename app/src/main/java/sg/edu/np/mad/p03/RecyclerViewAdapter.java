@@ -53,13 +53,6 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<ViewHolder>{
                 builder.setPositiveButton("View", new DialogInterface.OnClickListener(){
                     public void onClick(DialogInterface dialog, int id){
                         Intent mainAct = new Intent(view.getContext(), MainActivity.class);
-                        /*Bundle userInfo = new Bundle();
-                        userInfo.putString("Name",s.Name);
-                        userInfo.putString("Desc",s.Description);
-                        userInfo.putInt("ID",s.Id);
-                        userInfo.putBoolean("FollowStatus",s.Followed);
-                         */
-
                         mainAct.putExtra("userObject", (Serializable) s);
                         view.getContext().startActivity(mainAct);
                     }
@@ -71,13 +64,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<ViewHolder>{
                 builder.show();
             }
         });
-        if (s.Name.endsWith("7")){
-            holder.profPic.setVisibility(View.VISIBLE);
-        }
-        else{
-            holder.profPic.setVisibility(View.GONE);
-        }
-
+        holder.profPic.setVisibility(s.Name.endsWith("7") ? View.VISIBLE : View.GONE);
     }
 
     @Override

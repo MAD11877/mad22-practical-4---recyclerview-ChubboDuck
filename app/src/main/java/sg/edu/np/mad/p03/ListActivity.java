@@ -24,8 +24,8 @@ public class ListActivity extends AppCompatActivity {
             Random randObj = new Random();      //reduce the number of times new Random has to be typed
             User randUser = new User("Name" + randObj.nextInt(2147483647),
                     randObj.nextInt(2147483647) + "",      //convert int to string
-                    index + 2,
-                    true);
+                    index + 1,
+                    randObj.nextBoolean());
             userList.add(randUser);
         }
 

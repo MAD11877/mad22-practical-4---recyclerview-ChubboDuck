@@ -10,11 +10,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
-    User user = new User("MAD",
-            "Lorem ipsum dolor sit amet, consectetur\n" +
-            "adipiscing elit, sed do eiusmod tempor\n" +
-            "incididunt ut labore et dolore magna aliqua", 1, false);
-    Boolean followed = user.Followed;
     TextView text;
     Button message;
     @Override
@@ -48,15 +43,10 @@ public class MainActivity extends AppCompatActivity {
     public void Follow(View view){
         Intent receivingEnd = getIntent();
         User userInfo = (User) receivingEnd.getSerializableExtra("userObject");
+        userInfo.Followed = !userInfo.Followed;
         Button followBtn = findViewById(R.id.button6);   //linked to the follow button
-        if (!userInfo.Followed){    //if followed, then go to else and set text to unfollow, vice versa
-            followBtn.setText("Unfollow");
-            Toast.makeText(getBaseContext(),"Followed" +"",Toast.LENGTH_LONG).show();
-        }
-        else {
-            followBtn.setText("Follow"); //Follow
-            Toast.makeText(getBaseContext(),"Unfollowed",Toast.LENGTH_SHORT).show();
-        }
-        ListActivity.userList.get(0).Followed = userInfo.Followed;
+        followBtn.setText(userInfo.Followed ? "Unfollow" : "Follow");   //if followed, set text to unfollow, vice versa
+        Toast.makeText(getApplicationContext(), userInfo.Followed ? "Followed" : "Unfollowed", Toast.LENGTH_LONG).show();   // same concept as the above but Toast msg
+        ListActivity.userList.get(userInfo.Id - 1).Followed = userInfo.Followed;  //Set new value in the list
     }
 }
