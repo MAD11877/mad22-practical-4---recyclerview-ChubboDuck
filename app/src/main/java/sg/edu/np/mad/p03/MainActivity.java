@@ -22,31 +22,16 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        /*
-        text = findViewById(R.id.Title);
-        text.setText(user.Name);
-
-        text = findViewById(R.id.description); // Description text
-        text.setText(user.Description); // Set text to user class info
-
-        if (followed) {        // if user has already followed, show unfollow text, else show default page
-            text = findViewById(R.id.button6);
-            text.setText("Unfollow");
-        }*/
-
         Intent receivingEnd = getIntent();
-        String username = receivingEnd.getStringExtra("Name");
-        String userDesc = receivingEnd.getStringExtra("Desc");
-        Integer userID = receivingEnd.getIntExtra("ID",0);
-        Boolean userFollowStatus = receivingEnd.getBooleanExtra("FollowStatus",false);
+        User userInfo = (User) receivingEnd.getSerializableExtra("userObject");
 
         TextView nameDisplay = findViewById(R.id.Title);
-        nameDisplay.setText(username);
+        nameDisplay.setText(userInfo.Name);
 
         TextView descDisplay = findViewById(R.id.description);
-        descDisplay.setText(userDesc);
+        descDisplay.setText(userInfo.Description);
 
-        if (userFollowStatus){
+        if (userInfo.Followed){
             text = findViewById(R.id.button6);
             text.setText("Unfollow");
         }
@@ -58,26 +43,20 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(msgGrp);
             }
         });
-
     }
 
     public void Follow(View view){
         Intent receivingEnd = getIntent();
-        Boolean userFollowStatus = receivingEnd.getBooleanExtra("FollowStatus",false);
-        Integer userID = receivingEnd.getIntExtra("ID",0);
+        User userInfo = (User) receivingEnd.getSerializableExtra("userObject");
         Button followBtn = findViewById(R.id.button6);   //linked to the follow button
-        userFollowStatus = !userFollowStatus;  //Alternates user.followed value: True and False
-
-        if (userFollowStatus){
+        if (!userInfo.Followed){    //if followed, then go to else and set text to unfollow, vice versa
             followBtn.setText("Unfollow");
-            Toast.makeText(getBaseContext(),"Followed",Toast.LENGTH_SHORT).show();
+            Toast.makeText(getBaseContext(),"Followed" +"",Toast.LENGTH_LONG).show();
         }
         else {
-            followBtn.setText("Follow");
+            followBtn.setText("Follow"); //Follow
             Toast.makeText(getBaseContext(),"Unfollowed",Toast.LENGTH_SHORT).show();
         }
-
-        Intent rvAdapt = new Intent(MainActivity.this, RecyclerViewAdapter.class);
-        rvAdapt.putExtra("followChange",userID);
+        ListActivity.userList.get(0).Followed = userInfo.Followed;
     }
 }

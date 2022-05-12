@@ -1,9 +1,12 @@
 package sg.edu.np.mad.p03;
 
+import android.app.Activity;
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,12 +17,12 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Random;
 
 public class RecyclerViewAdapter extends RecyclerView.Adapter<ViewHolder>{
     ArrayList<User> data;
-
     public RecyclerViewAdapter (ArrayList<User> data) {
         this.data = data;
     }
@@ -50,13 +53,14 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<ViewHolder>{
                 builder.setPositiveButton("View", new DialogInterface.OnClickListener(){
                     public void onClick(DialogInterface dialog, int id){
                         Intent mainAct = new Intent(view.getContext(), MainActivity.class);
-                        Bundle userInfo = new Bundle();
+                        /*Bundle userInfo = new Bundle();
                         userInfo.putString("Name",s.Name);
                         userInfo.putString("Desc",s.Description);
                         userInfo.putInt("ID",s.Id);
                         userInfo.putBoolean("FollowStatus",s.Followed);
+                         */
 
-                        mainAct.putExtras(userInfo);
+                        mainAct.putExtra("userObject", (Serializable) s);
                         view.getContext().startActivity(mainAct);
                     }
                 });
@@ -74,12 +78,11 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<ViewHolder>{
             holder.profPic.setVisibility(View.GONE);
         }
 
-
-
     }
 
     @Override
     public int getItemCount() {
         return data.size();
     }
+
 }
