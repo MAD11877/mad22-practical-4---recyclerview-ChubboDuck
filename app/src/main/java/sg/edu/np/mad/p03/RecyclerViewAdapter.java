@@ -32,7 +32,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<ViewHolder>{
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View item = LayoutInflater.from(parent.getContext()).inflate(
                 R.layout.recyclerview_row,
-                null,
+                parent,
                 false);
         return new ViewHolder(item);
     }

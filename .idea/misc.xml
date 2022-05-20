@@ -3,6 +3,10 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/alfre/AndroidStudioProjects/mad22-practical-4---recyclerview-ChubboDuck/app/src/main/res/layout/activity_list.xml" value="0.175" />
+        <entry key="..\:/Users/alfre/AndroidStudioProjects/mad22-practical-4---recyclerview-ChubboDuck/app/src/main/res/layout/activity_main.xml" value="0.175" />
+        <entry key="..\:/Users/alfre/AndroidStudioProjects/mad22-practical-4---recyclerview-ChubboDuck/app/src/main/res/layout/fragment_group2.xml" value="0.175" />
+        <entry key="..\:/Users/alfre/AndroidStudioProjects/mad22-practical-4---recyclerview-ChubboDuck/app/src/main/res/layout/recyclerview_row.xml" value="0.175" />
         <entry key="..\:/Users/alfre/AndroidStudioProjects/p03/app/src/main/res/drawable-v24/Android Round_foreground.xml" value="0.2555" />
         <entry key="..\:/Users/alfre/AndroidStudioProjects/p03/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.243" />
         <entry key="..\:/Users/alfre/AndroidStudioProjects/p03/app/src/main/res/drawable/ic_launcher_background.xml" value="0.2555" />
